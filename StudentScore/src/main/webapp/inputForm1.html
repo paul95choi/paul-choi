@@ -1,0 +1,64 @@
+<!DOCTYPE html><!-- HTML5 문서 유형을 정의하는 선언문 -->
+<html lang="en"><!-- 웹 페이지 전체를 감싸는 최상위 요소. lang 속성은 문서의 언어를 나타냄. -->
+
+<head><!--머릿말 선언-->
+    <meta charset="UTF-8"> <!-- 문자 인코딩을 지정하는 태그. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- 브라우저 호환성을 위한 태그. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 모바일 기기에서 화면 크기에 맞게 표시하기 위한 태그. -->
+    <title>추가</title> <!-- 웹 페이지의 제목을 지정하는 태그. -->
+    <style>
+        tr > td > td {
+            width: 50;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        function checkForm1 () { //입력된 문자를 검사하는 함수 선언
+            const form = document.getElementById('form_01'); //form_01폼에 있는 요소를 form변수에 저장한다.
+
+            const username = form.elements.name.value; //form변수에서 form_01폼의 name에 해당하는 값을 id변수에 저장한다.
+            const korean = parseFloat(form.elements.kor.value);//form변수에서 form_01폼의 kor에 해당하는 값을 id변수에 저장한다.
+            const english = parseFloat(form.elements.eng.value); //form변수에서 form_01폼의 eng에 해당하는 값을 id변수에 저장한다.
+            const mathematics = parseFloat(form.elements.mat.value); //form변수에서 form_01폼의 mat에 해당하는 값을 id변수에 저장한다.
+
+            const pattern1 = /^([a-zA-Z]|[가-힣])+$/; //한글,영어만 입력받는 정규식1 생성
+            const pattern2 = /^.{1,20}$/; //20자 이내만 입력받는 정규식2 생성
+            const pattern3 = /^(?:100|[1-9]?[0-9])$/; //0~100사이의 정수값만 입력받는 정규식3 생성
+
+            if (!pattern1.test(username) || !pattern2.test(username)) { //username이 pattern1이나 2중 하나만 통과를 못해도 
+                alert("한글과 영문을 20자 이내로 입력하세요"); //경고창 출력
+              //입력한 국영수 값이 pattern3 테스트를 한과목만 통과를 못해도 
+            } else if (!pattern3.test(korean) || !pattern3.test(english) ||!pattern3.test(mathematics)) {
+                alert("0~100까지 정수값만 입력하세요.");//경고창 출력
+            }
+
+            else { // "테스트를 모두 통과한다면 insertDB.jsp"를 인자로 제공.
+                form.action = 'insertDB.jsp';
+                form.submit();
+            }
+        }
+    </script>
+    
+</head><!--머릿말 종료-->
+<body><!--본문선언-->
+
+<!-- 테이블 선언 -->
+<table cellspacing =1 width=600 border =1> 
+<!-- insertDB로 데이터를 post방식으로 전송하는 form선언 -->
+    <form method = 'post' id = 'form_01'> 
+    <!-- 클릭시 checkForm1()함수로 넘어가 데이터 체크 -->
+        <input type = "button" value = "전송" onclick = "checkForm1()">
+        <tr><td>이름:</td><td><input type="text" name = "name"></td></tr>
+        <tr><td>학번:</td><td>자동부여</td></tr>
+        <tr><td>국어:</td><td><input type="text" name = "kor"></td></tr>
+        <tr><td>영어:</td><td><input type="text" name = "eng"></td></tr>
+        <tr><td>수학:</td><td><input type="text" name = "mat"></td></tr>  
+    </form> <!--폼 종료-->
+
+</body><!--본문선언-->
+
+</html><!--html문 종료-->
+
+
+<!--action="insertDB.jsp" -->

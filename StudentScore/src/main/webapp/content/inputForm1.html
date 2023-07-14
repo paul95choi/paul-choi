@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성적입력추가</title>
+    <script>
+       const pattern = /^[0-9]{6}$/; //6자리 정수만 받는 정규식 선언 pattern은 학번
+       const pattern1 = /^([a-zA-Z]|[가-힣])+$/; //한글,영어만 입력받는 정규식1 생성 pattern1,2는 이름
+       const pattern2 = /^.{1,20}$/; //20자 이내만 입력받는 정규식2 생성
+       const pattern3 = /^(?:100|[1-9]?[0-9])$/; //0~100사이의 정수값만 입력받는 정규식3 생성 pattern3은 점수
+          
+       function checkId(event) {
+       const value = event.target.value;
+       if (!pattern.test(value)) {
+           alert("6자리 정수만 입력하세요.");
+           event.target.value = '';
+       }
+   }
+   
+       function checkName(event){
+           const value = event.target.value;
+           if(!pattern1.test(value)){
+               alert("이름은 한글 또는 영어로만 입력해야 됩니다.")
+               event.target.value='';
+           }
+       }
+       
+       function checkPattern(event){
+           const value = event.target.value;
+           if(!pattern1.test(value)|| !pattern2.test(value)){
+               alert("입력 형식이 올바르지 않습니다.");
+               event.target.value='';
+           }
+       }
+
+       function checkScore(event){
+           const value = event.target.value;
+           if(!pattern3.test(value)){
+               alert("0에서 100까지만 입력하세요.");
+               event.target.value = '';
+           }
+       }
+   </script>
+</head>
+<body>
+    <h1>성적입력추가</h1>
+    <form method='post' action='insertDB.jsp'>
+        <table cellspacing=1 width=400 border=0>
+            <tr>
+                <td width=300></td>
+                <td width=100><input type="submit" value="추가"></td>
+            </tr>
+        </table>
+        <table cellspacing=1 width=400 border=1>
+            <tr>
+                <td width=100><p align=center>이름</p></td>
+                <td width=300><p align=center><input type='text' name='name' value='' onchange="checkName(event);"></p></td>
+            </tr>
+            <tr>
+            <td width=100><p align=center>학번</p></td>
+            <td width=300><p align=center>자동부여</p></td>
+        </tr>
+        <tr>
+            <td width=100><p align=center>국어</p></td>
+            <td width=300><p align=center><input type='text' min="0" max="100" name='korean' value='' onchange="checkScore(event)"></p></td>
+        </tr>
+        <tr>
+            <td width=100><p align=center>영어</p></td>
+            <td width=300><p align=center><input type='text' min="0" max="100" name='english' value='' onchange="checkScore(event)"></p></td>
+        </tr>
+        <tr>
+            <td width=100><p align=center>수학</p></td>
+            <td width=300><p align=center><input type='text' min="0" max="100"name='mathmatic' value='' onchange="checkScore(event)"></p></td>
+        </tr>
+        </table>
+    </form>
+</body>
+</html>

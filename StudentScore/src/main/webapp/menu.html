@@ -1,0 +1,33 @@
+
+<!DOCTYPE html> <!--문서 유형을 나타내는 선언문. HTML5 문서에서는 필수적으로 선언되어야 함-->
+<html lang="en"><!--HTML 문서의 시작을 알리는 태그. lang 속성을 통해 문서의 언어를 지정할 수 있다.-->
+
+<head><!--Heading의 준말로 글의 머리말에 해당하는 태그.-->
+    <!--meta 태그를 통해 문자 인코딩, 브라우저 호환성, 화면 크기 등을 지정-->
+    <meta charset="UTF-8"><!-- 인코딩 언어 utf-8-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- 브라우저 호환성을 위한 태그. -->
+    <!-- 모바일 기기에서 화면 크기에 맞게 표시하기 위한 태그. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><!-- 웹 페이지의 제목을 지정하는 태그. -->
+</head><!--head 태그가 끝남을 알림.-->
+
+<body><!--본문에 해당하는 부분을 알려주는 태그.-->
+    <ul><!--순서가 없는 목록으로 일반적인 나열을 하는 태그.-->
+        <!--현재 디렉토리의 createDB.jsp에 대한 경로를 가지며 "content"라는 이름의 프레임에 로드 -->
+        <li><a href="./createDB.jsp" target="content">TBL 생성</a></li>
+        <!--현재 디렉토리의 dropDB.jsp에 대한 경로를 가지며 "content"라는 이름의 프레임에 로드 -->
+        <li><a href="./dropDB.jsp" target="content">TBL 삭제</a></li>
+        <!--현재 디렉토리의 AllsetDB.jsp에 대한 경로를 가지며 "content"라는 이름의 프레임에 로드 -->
+        <li><a href="./AllsetDB.jsp" target="content">TBL값 넣기</a></li>
+        <!--현재 디렉토리의 AllviewDB.jsp에 대한 경로를 가지며 "content"라는 이름의 프레임에 로드 -->
+        <li><a href="./AllviewDB.jsp" target="content">TBL 전체 조회</a></li>
+     
+        <br><br>
+
+        <li><a href="./inputForm1.html" target="content">추가</a></li>
+        <li><a href="./inputForm2.html" target="content">정정/삭제</a></li>
+        
+    </ul><!--나열 종료-->
+</body><!--본문에 해당하는 부분이 끝남을 알림.-->
+
+</html><!--HTML 구문이 끝남을 알림.-->
