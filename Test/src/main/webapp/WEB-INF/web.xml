@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<context-param> <!-- 루트 컨텍스트 영역(uri를 제외한 나머지 영역) -->
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener> <!-- 루트 컨텍스트 영역 -->
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Processes application requests -->
+	<servlet> 
+		<servlet-name>appServlet</servlet-name> <!-- 서블렛 이름과 클래스를 설정해야함. -->
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> <!-- 디스패처 서블릿은 객체를 찾는 역할을 함. 디스패처는 보내는 사람 --> 
+		<init-param> <!-- context-param과 동일한 기능 -->
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> <!-- 변수처럼 선언 -->
+		</init-param>
+		<load-on-startup>1</load-on-startup> <!-- 프로그램을 실행시키면 순서를 지정해야함. 순번을 지정하는 역할. -->
+	</servlet>
+		
+	<servlet-mapping> <!-- 경로를 설정함 -->
+		<servlet-name>appServlet</servlet-name> <!-- appServlet에 매핑을 해놓은 것.  -->
+		<url-pattern>/</url-pattern><!-- 경로를 지정하는 곳. 지금은 기본경로  -->
+	</servlet-mapping>
+
+<!-- 한글 깨짐 방지 필터 -->
+<filter>
+	<filter-name>encodingFilter</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+	</filter-class>
+	
+	<init-param>
+	<param-name>encoding</param-name>
+	<param-value>UTF-8</param-value>
+</init-param>
+</filter>
+
+<filter-mapping>
+	<filter-name>encodingFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+<!-- 한글 깨짐 방지 필터끝 -->
+
+
+</web-app>
